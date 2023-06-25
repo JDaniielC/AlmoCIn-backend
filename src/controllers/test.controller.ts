@@ -18,6 +18,11 @@ class TestController {
     this.router.get(this.prefix, (req: Request, res: Response) =>
       this.getTests(req, res)
     );
+
+    this.router.get(`${this.prefix}/others`, (req: Request, res: Response) =>
+      this.getOthersTests(req, res)
+    );
+
     this.router.get(`${this.prefix}/:id`, (req: Request, res: Response) =>
       this.getTest(req, res)
     );
@@ -31,8 +36,18 @@ class TestController {
       this.deleteTest(req, res)
     );
   }
+
   private async getTests(req: Request, res: Response) {
     const tests = await this.testService.getTests();
+
+    return new SuccessResult({
+      msg: Result.transformRequestOnMsg(req),
+      data: tests,
+    }).handle(res);
+  }
+
+  private async getOthersTests(req: Request, res: Response) {
+    const tests = await this.testService.getOtherTests();
 
     return new SuccessResult({
       msg: Result.transformRequestOnMsg(req),

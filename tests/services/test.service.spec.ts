@@ -1,11 +1,13 @@
 import TestEntity from '../../src/entities/test.entity';
 import TestModel from '../../src/models/test.model';
+import OtherRepository from '../../src/repositories/other.repository';
 import TestRepository from '../../src/repositories/test.repository';
 import TestService from '../../src/services/test.service';
 import { HttpNotFoundError } from '../../src/utils/errors/http.error';
 
 describe('TestService', () => {
   let mockTestRepository: TestRepository;
+  let mockOtherRepository: OtherRepository;
   let service: TestService;
 
   let mockTestEntity: TestEntity = new TestEntity({
@@ -24,7 +26,11 @@ describe('TestService', () => {
       deleteTest: jest.fn(),
     } as any;
 
-    service = new TestService(mockTestRepository);
+    mockOtherRepository = {
+      getTests: jest.fn(),
+    } as any;
+
+    service = new TestService(mockTestRepository, mockOtherRepository);
   });
 
   afterEach(() => {

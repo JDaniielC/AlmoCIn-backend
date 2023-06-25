@@ -30,12 +30,15 @@ export default class BaseRepository<T extends BaseEntity> {
     }
   }
 
-  public async update(id: string, data: Partial<T>): Promise<T | null> {
+  public async update(
+    filter: FilterFunction<T>,
+    data: Partial<T>
+  ): Promise<T | null> {
     try {
       if (!this.db.data[this.prefix]) {
         return null;
       }
-      const item = this.db.data[this.prefix].find((item) => item.id === id);
+      const item = this.db.data[this.prefix].find(filter);
       if (item) {
         delete data.id;
         Object.assign(item, data);
@@ -71,14 +74,13 @@ export default class BaseRepository<T extends BaseEntity> {
     }
   }
 
-  public async delete(id: string) {
+  public async delete(filter: FilterFunction<T>): Promise<void> {
     try {
       if (!this.db.data[this.prefix]) {
         return;
       }
-      this.db.data[this.prefix] = this.db.data[this.prefix].filter(
-        (item) => item.id !== id
-      );
+
+      this.db.data[this.prefix] = this.db.data[this.prefix].filter(filter);
     } catch (e) {
       throw new HttpInternalServerError();
     }

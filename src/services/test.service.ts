@@ -1,5 +1,6 @@
 import TestEntity from '../entities/test.entity';
 import TestModel from '../models/test.model';
+import OtherRepository from '../repositories/other.repository';
 import TestRepository from '../repositories/test.repository';
 import { HttpNotFoundError } from '../utils/errors/http.error';
 
@@ -9,13 +10,26 @@ class TestServiceMessageCode {
 
 class TestService {
   private testRepository: TestRepository;
+  private otherRepository: OtherRepository;
 
-  constructor(testRepository: TestRepository) {
+  constructor(
+    testRepository: TestRepository,
+    otherRepository: OtherRepository
+  ) {
     this.testRepository = testRepository;
+    this.otherRepository = otherRepository;
   }
 
   public async getTests(): Promise<TestModel[]> {
     const testsEntity = await this.testRepository.getTests();
+
+    const testsModel = testsEntity.map((test) => new TestModel(test));
+
+    return testsModel;
+  }
+
+  public async getOtherTests(): Promise<TestModel[]> {
+    const testsEntity = await this.otherRepository.getTests();
 
     const testsModel = testsEntity.map((test) => new TestModel(test));
 

@@ -22,11 +22,11 @@ class TestRepository extends BaseRepository<TestEntity> {
     id: string,
     data: TestEntity
   ): Promise<TestEntity | null> {
-    return await this.update(id, data);
+    return await this.update((item) => item.id === id, data);
   }
 
   public async deleteTest(id: string): Promise<void> {
-    await this.delete(id);
+    await this.delete((item) => item.id !== id);
   }
 }
 
