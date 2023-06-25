@@ -37,16 +37,30 @@ class TestService {
     return testModel;
   }
 
-  public async createTest(data: TestEntity): Promise<void> {
-    await this.testRepository.add(data);
+  public async createTest(data: TestEntity): Promise<TestModel> {
+    const testEntity = await this.testRepository.createTest(data);
+    const testModel = new TestModel(testEntity);
+
+    return testModel;
   }
 
-  public async updateTest(id: string, data: TestEntity): Promise<void> {
-    await this.testRepository.update(id, data);
+  public async updateTest(id: string, data: TestEntity): Promise<TestModel> {
+    const testEntity = await this.testRepository.updateTest(id, data);
+
+    if (!testEntity) {
+      throw new HttpNotFoundError({
+        msg: 'Test not found',
+        msgCode: TestServiceMessageCode.test_not_found,
+      });
+    }
+
+    const testModel = new TestModel(testEntity);
+
+    return testModel;
   }
 
   public async deleteTest(id: string): Promise<void> {
-    await this.testRepository.delete(id);
+    await this.testRepository.deleteTest(id);
   }
 }
 

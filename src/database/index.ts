@@ -12,4 +12,8 @@ export default class Database {
     }
     return Database.instance;
   }
+
+  static reset() {
+    Database.instance = new Database();
+  }
 }

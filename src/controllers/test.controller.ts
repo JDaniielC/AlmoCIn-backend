@@ -32,7 +32,7 @@ class TestController {
     );
   }
   private async getTests(req: Request, res: Response) {
-    let tests = await this.testService.getTests();
+    const tests = await this.testService.getTests();
 
     return new SuccessResult({
       msg: Result.transformRequestOnMsg(req),
@@ -41,7 +41,7 @@ class TestController {
   }
 
   private async getTest(req: Request, res: Response) {
-    let test = await this.testService.getTest(req.params.id);
+    const test = await this.testService.getTest(req.params.id);
 
     return new SuccessResult({
       msg: Result.transformRequestOnMsg(req),
@@ -50,18 +50,23 @@ class TestController {
   }
 
   private async createTest(req: Request, res: Response) {
-    await this.testService.createTest(new TestEntity(req.body));
+    const test = await this.testService.createTest(new TestEntity(req.body));
 
     return new SuccessResult({
       msg: Result.transformRequestOnMsg(req),
+      data: test,
     }).handle(res);
   }
 
   private async updateTest(req: Request, res: Response) {
-    await this.testService.updateTest(req.params.id, new TestEntity(req.body));
+    const test = await this.testService.updateTest(
+      req.params.id,
+      new TestEntity(req.body)
+    );
 
     return new SuccessResult({
       msg: Result.transformRequestOnMsg(req),
+      data: test,
     }).handle(res);
   }
 

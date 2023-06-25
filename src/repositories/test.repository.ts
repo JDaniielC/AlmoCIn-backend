@@ -14,12 +14,15 @@ class TestRepository extends BaseRepository<TestEntity> {
     return await this.findOne((item) => item.id === id);
   }
 
-  public async createTest(data: TestEntity): Promise<void> {
-    await this.add(data);
+  public async createTest(data: TestEntity): Promise<TestEntity> {
+    return await this.add(data);
   }
 
-  public async updateTest(id: string, data: TestEntity): Promise<void> {
-    await this.update(id, data);
+  public async updateTest(
+    id: string,
+    data: TestEntity
+  ): Promise<TestEntity | null> {
+    return await this.update(id, data);
   }
 
   public async deleteTest(id: string): Promise<void> {

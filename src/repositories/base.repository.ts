@@ -14,30 +14,34 @@ export default class BaseRepository<T extends BaseEntity> {
     this.db = Database.getInstance();
   }
 
-  public async add(data: T) {
+  public async add(data: T): Promise<T> {
     try {
       if (!this.db.data[this.prefix]) {
         this.db.data[this.prefix] = [];
       }
-      this.db.data[this.prefix].push({
+      const newItem = {
         ...data,
         id: uuidv4(),
-      });
+      };
+      this.db.data[this.prefix].push(newItem);
+      return newItem;
     } catch (e) {
       throw new HttpInternalServerError();
     }
   }
 
-  public async update(id: string, data: Partial<T>) {
+  public async update(id: string, data: Partial<T>): Promise<T | null> {
     try {
       if (!this.db.data[this.prefix]) {
-        return;
+        return null;
       }
       const item = this.db.data[this.prefix].find((item) => item.id === id);
       if (item) {
         delete data.id;
         Object.assign(item, data);
+        return item;
       }
+      return null;
     } catch (e) {
       throw new HttpInternalServerError();
     }
