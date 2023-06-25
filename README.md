@@ -1,4 +1,4 @@
-# ESS Ecommerce App - Server
+# ESS Backend App - Server
 
 A Node.js server for handling HTTP requests.
 
@@ -19,6 +19,19 @@ Clone the repository and install the dependencies by running the following comma
 
 ```
 npm install
+```
+
+### First time running ?
+
+Run the follow scripts
+
+```
+chmod +x .husky/pre-commit
+chmod +x .husky/pre-push
+```
+
+```
+npm run
 ```
 
 ### Environment
@@ -49,11 +62,11 @@ The following scripts are available in the `package.json` file:
 
 The following dependencies are used in the project:
 
-- [chalk](https://github.com/chalk/chalk): Terminal string styling done right.
 - [env-cmd](https://github.com/toddbluhm/env-cmd): A simple way to manage your environment variables in npm scripts.
 - [express](https://github.com/expressjs/express): Fast, unopinionated, minimalist web framework for Node.js.
 - [typescript](https://github.com/microsoft/TypeScript): A typed superset of JavaScript that compiles to plain JavaScript.
-- [winston](https://github.com/winstonjs/winston): A multi-transport async logging library.
+- [jest](https://github.com/microsoft/TypeScript): Jest is a delightful JavaScript Testing Framework with a focus on simplicity.
+- [pino](https://github.com/pinojs/pino): Very low overhead Node.js logger.
 
 ## License
 
