@@ -1,6 +1,13 @@
-# ESS Backend App - Server
+# ESS Back-end Node.js
 
-A Node.js server for handling HTTP requests.
+This is the Back-end base project in Node.js for the Software and Systems Engineering discipline, offered by the Informatics Center (CIn) of the Federal University of Pernambuco (UFPE).
+
+## Table of Contents
+
+1. [Getting Started](##getting-started)
+2. [Scripts](#scripts)
+3. [Dependencies](#dependencies)
+4. [Architecture](#architecture)
 
 ## Getting Started
 
@@ -68,6 +75,6 @@ The following dependencies are used in the project:
 - [jest](https://github.com/microsoft/TypeScript): Jest is a delightful JavaScript Testing Framework with a focus on simplicity.
 - [pino](https://github.com/pinojs/pino): Very low overhead Node.js logger.
 
-## License
+## Architecture
 
-This project is licensed under the ISC License.
+To understand and learn more details about the structure of the project, click [here](./docs/architecture-pattern.md) to be redirected to the README that contains this information.
