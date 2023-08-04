@@ -3,9 +3,10 @@ module.exports = {
   testEnvironment: 'node',
   moduleFileExtensions: ['js', 'json', 'ts'],
   rootDir: '',
-  testRegex: '.spec.ts$',
+  testRegex: ['.steps.ts$'],
   transform: {
     '^.+\\.(t|j)s$': 'ts-jest',
   },
   setupFilesAfterEnv: ['./setupTests.ts'],
 };
+
