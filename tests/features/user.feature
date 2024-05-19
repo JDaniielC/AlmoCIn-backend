@@ -35,3 +35,10 @@ Feature: type of users
     Given I am a super admin
     When I access the normal page
     Then I should see the normal page
+  
+  Scenario: super admin user can access super admin page
+    Given I am a super admin
+    When I access the super admin page
+    Then I should see the super admin page
+    Then I should not see the admin page
+    Then I should not see the normal page
