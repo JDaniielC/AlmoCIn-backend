@@ -17,5 +17,8 @@ Feature: type of users
     When I access the normal page
     Then I should see the normal page
 
-
+  Scenario: normal user can access normal page
+    Given I am a normal
+    When I access the normal page
+    Then I should see the normal page
 
