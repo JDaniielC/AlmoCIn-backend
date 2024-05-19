@@ -28,3 +28,7 @@ Feature: type of users
     When I access the admin page
     Then I should see the admin page
 
+  Scenario: super admin user can access normal page
+    Given I am a super admin
+    When I access the normal page
+    Then I should see the normal page
