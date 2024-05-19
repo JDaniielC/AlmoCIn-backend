@@ -1,6 +1,7 @@
 Feature: type of users
   - 0: normal user (client)
   - 1: admin user (staff)
+  - 2: super admin user (manager)
 
   Scenario: normal user can't access admin page
     Given I am a normal
@@ -21,4 +22,9 @@ Feature: type of users
     Given I am a normal
     When I access the normal page
     Then I should see the normal page
+
+  Scenario: super admin user can access admin page
+    Given I am a super admin
+    When I access the admin page
+    Then I should see the admin page
 
